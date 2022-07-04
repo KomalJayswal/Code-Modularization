@@ -1,16 +1,13 @@
-package com.example.demo.service;
+package net.learning.demo.service;
 
-import com.example.demo.model.DataHolder;
-import com.example.demo.model.Response;
-import com.example.demo.validators.AgeValidator;
-import com.example.demo.validators.NameValidator;
-import com.example.demo.validators.Orch;
+import net.learning.demo.model.DataHolder;
+import net.learning.demo.model.Response;
+import net.learning.demo.validators.AgeValidator;
+import net.learning.demo.validators.NameValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
-import static com.example.demo.validators.Orch.*;
+import static net.learning.demo.validators.Orch.*;
 
 @Service
 public class DemoService {
@@ -36,7 +33,7 @@ public class DemoService {
 
     public Response submit(DataHolder dataHolder){
 
-        validate(nameValidator,dataHolder).validate(ageValidator,dataHolder).map(ageValidator,dataHolder);
+        validate(nameValidator,dataHolder).validate(ageValidator,dataHolder);//.map(ageValidator,dataHolder);
 
         //validation.apply(dataHolder,NameValidator::apply);
 

@@ -1,4 +1,4 @@
-package com.example.demo.validators;
+package net.learning.demo.validators;
 
 import java.util.function.BiFunction;
 

@@ -1,4 +1,4 @@
-package com.example.demo.validators;
+package net.learning.demo.validators;
 
 public class Orch {
 
@@ -10,7 +10,7 @@ public class Orch {
     }
 
     public static <R> Orch map(IMapper iMapper, R... r){
-        iValidator.apply(r);
+        //iValidator.apply(r);
         return ORCH;
     }
 }

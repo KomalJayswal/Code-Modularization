@@ -1,10 +1,9 @@
-package com.example.demo.validators;
+package net.learning.demo.validators;
 
-import com.example.demo.model.DataHolder;
+import net.learning.demo.model.DataHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.function.Function;
 
 @Service
 public class AgeValidator implements IValidator<DataHolder>  {

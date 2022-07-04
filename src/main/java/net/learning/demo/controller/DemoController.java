@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package net.learning.demo.controller;
 
-import com.example.demo.model.DataHolder;
-import com.example.demo.model.Response;
-import com.example.demo.service.DemoService;
+import net.learning.demo.model.DataHolder;
+import net.learning.demo.model.Response;
+import net.learning.demo.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

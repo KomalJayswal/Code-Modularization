@@ -1,4 +1,4 @@
-package com.example.demo.validators;
+package net.learning.demo.validators;
 
 import java.util.function.Consumer;
 import java.util.function.Function;

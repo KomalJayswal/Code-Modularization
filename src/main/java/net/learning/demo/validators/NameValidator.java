@@ -1,11 +1,10 @@
-package com.example.demo.validators;
+package net.learning.demo.validators;
 
-import com.example.demo.model.DataHolder;
+import net.learning.demo.model.DataHolder;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
-import java.util.function.Function;
+
 //Function<Optional<DataHolder>, Optional<DataHolder>>
 @Service
 public class NameValidator implements IValidator<DataHolder>  {
