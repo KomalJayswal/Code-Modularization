@@ -6,13 +6,14 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AgeValidator implements IValidator<DataHolder>  {
+public class AgeValidator /*implements IValidator*/ {
 
-@Override
-public void accept(DataHolder dataHolder) {
-        Optional.ofNullable(dataHolder)
-        .filter(d -> d.getName().equals("komal"))
-        .orElseThrow(() -> new RuntimeException());
+    //@Override
+    public DataHolder apply(DataHolder dataHolder) {
 
-        }
+        if(dataHolder.getAge()>60)
+            throw new RuntimeException();
+
+        return dataHolder;
+    }
 }
