@@ -16,7 +16,7 @@ public class DemoController {
         private DemoService demoService;
 
         @GetMapping("/get")
-        public ResponseEntity<Response> getData(@RequestBody DataHolder dataHolder) {
+        public ResponseEntity<DataHolder> getData(@RequestBody DataHolder dataHolder) {
 
             return ResponseEntity.status(HttpStatus.OK).body(demoService.submit(dataHolder));
         }

@@ -1,13 +1,20 @@
 package net.learning.demo.service;
 
+import net.learning.demo.mapper.AgeMapper;
 import net.learning.demo.model.DataHolder;
+import net.learning.demo.model.OhmErrors;
 import net.learning.demo.model.Response;
 import net.learning.demo.validators.AgeValidator;
 import net.learning.demo.validators.NameValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import static net.learning.demo.validators.Orch.*;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
+
+import static net.learning.demo.common.Orch.*;
 
 @Service
 public class DemoService {
@@ -17,6 +24,9 @@ public class DemoService {
 
     @Autowired
     private AgeValidator ageValidator;
+
+    @Autowired
+    private AgeMapper ageMapper;
 
     /*public static void main(String[] args){
         DataHolder dataHolder = new DataHolder("komal","Jayswal");
@@ -31,12 +41,12 @@ public class DemoService {
         System.out.println("annonymous impl : "+function1.apply(dataHolder));
     }*/
 
-    public Response submit(DataHolder dataHolder){
+    public DataHolder submit(DataHolder dataHolder){
 
-        validate(nameValidator,dataHolder).validate(ageValidator,dataHolder);//.map(ageValidator,dataHolder);
+        return validate(nameValidator,dataHolder).validate(ageValidator,dataHolder).map(ageMapper,dataHolder,"abhijit");
 
         //validation.apply(dataHolder,NameValidator::apply);
 
-        return new Response("done");
+       // return new Response("done");
     }
 }
