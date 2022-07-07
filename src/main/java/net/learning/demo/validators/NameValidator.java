@@ -19,16 +19,8 @@ public class NameValidator implements IValidator<DataHolder>  {
     public void accept(DataHolder dataHolder) {
         Optional.ofNullable(dataHolder)
                 .filter(d -> d.getName().equals("komal"))
-                .orElseThrow(() ->{
-                    setValidationInHttpServletRequest();
-                    System.out.println("komal :- "+((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes()))
-                            .getRequest().getAttribute("ohmErrors"));
-                    throw new RuntimeException();
-                });
+                .orElse(setValidationInHttpServletRequest(dataHolder));
     }
-
-
-
 
         /*public static DataHolder apply(DataHolder dataHolder) {
 
@@ -38,7 +30,7 @@ public class NameValidator implements IValidator<DataHolder>  {
             return dataHolder;
         }*/
 
-    public void setValidationInHttpServletRequest() {
+    public DataHolder setValidationInHttpServletRequest(DataHolder dataHolder) {
         List<OhmErrors> ohmErrors = new ArrayList<>();
         OhmErrors ohmError = OhmErrors.builder()
                 .errorCode("12345")
@@ -50,5 +42,6 @@ public class NameValidator implements IValidator<DataHolder>  {
 
         ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes()))
                 .getRequest().setAttribute("ohmErrors", ohmErrors);
+        return dataHolder;
     }
 }
