@@ -30,6 +30,7 @@ public class NameValidator implements IValidator<DataHolder>  {
             return dataHolder;
         }*/
 
+
     public DataHolder setValidationInHttpServletRequest(DataHolder dataHolder) {
         List<OhmErrors> ohmErrors = new ArrayList<>();
         OhmErrors ohmError = OhmErrors.builder()
@@ -42,6 +43,6 @@ public class NameValidator implements IValidator<DataHolder>  {
 
         ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes()))
                 .getRequest().setAttribute("ohmErrors", ohmErrors);
-        return dataHolder;
+        return null;
     }
 }
