@@ -8,9 +8,9 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public interface IValidator extends Function<DataHolder ,DataHolder> {
+public interface IValidator {
 
-    @Override
+    //@Override
     public DataHolder apply(DataHolder dataHolder);
 }
 
