@@ -1,4 +1,4 @@
-package net.learning.demo.validators;
+package net.learning.demo.common;
 
 import java.util.function.Consumer;
 

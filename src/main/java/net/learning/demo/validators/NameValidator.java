@@ -1,48 +1,32 @@
 package net.learning.demo.validators;
 
+import net.learning.ExceptionHandlerUtility.exceptions.CustomException;
+import net.learning.demo.common.IValidator;
 import net.learning.demo.model.DataHolder;
-import net.learning.demo.model.OhmErrors;
-import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import net.learning.demo.utils.Constants;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
-//Function<Optional<DataHolder>, Optional<DataHolder>>
-@Service
-public class NameValidator implements IValidator<DataHolder>  {
+@Component
+public class NameValidator implements IValidator<DataHolder> {
+
     @Override
     public void accept(DataHolder dataHolder) {
         Optional.ofNullable(dataHolder)
-                .filter(d -> d.getName().equals("komal"))
-                .orElse(setValidationInHttpServletRequest(dataHolder));
-    }
+                .map(dataHolder1 -> {
+                    return Optional.ofNullable(dataHolder1.getName())
+                            .filter(name2 -> !name2.isEmpty())
+                            .map(name1 -> {
+                                return Optional.of(name1)
+                                        .filter(name -> Pattern.compile(Constants.NAME_REGEX).matcher(name).matches())
+                                        .orElseThrow(() -> new CustomException(HttpStatus.BAD_REQUEST, "Invalid Name !!!"));
+                            })
+                            .orElseThrow(() -> new CustomException(HttpStatus.BAD_REQUEST, "Name is missing"));
 
-        /*public static DataHolder apply(DataHolder dataHolder) {
-
-            if(!dataHolder.getName().equals("komal"))
-              throw new RuntimeException();
-
-            return dataHolder;
-        }*/
-
-
-    public DataHolder setValidationInHttpServletRequest(DataHolder dataHolder) {
-        List<OhmErrors> ohmErrors = new ArrayList<>();
-        OhmErrors ohmError = OhmErrors.builder()
-                .errorCode("12345")
-                .errorMessage("error messages")
-                .tag("01")
-                .technicalMessage("05")
-                .build();
-        ohmErrors.add(ohmError);
-
-        ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes()))
-                .getRequest().setAttribute("ohmErrors", ohmErrors);
-        return null;
+                })
+                .orElseThrow(() -> new CustomException(HttpStatus.INTERNAL_SERVER_ERROR, "Data is missing"));
     }
 }

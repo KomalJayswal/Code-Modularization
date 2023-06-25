@@ -12,6 +12,5 @@ import lombok.NoArgsConstructor;
 public class DataHolder {
 
     String name;
-
     int age;
 }
