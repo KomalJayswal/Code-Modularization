@@ -4,11 +4,18 @@ import net.learning.demo.common.IMapper;
 import net.learning.demo.model.DataHolder;
 import net.learning.demo.utils.Constants;
 import org.springframework.stereotype.Component;
+
 import java.util.Optional;
 
 @Component
 public class DefaultAgeMapper implements IMapper<DataHolder, DataHolder> {
 
+    /**
+     * Map the default age of 50.
+     *
+     * @param dataHolder the input data
+     * @return dataHolder.
+     */
     @Override
     public DataHolder apply(DataHolder dataHolder) {
         return Optional.ofNullable(dataHolder)

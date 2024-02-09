@@ -1,9 +1,8 @@
 package net.learning.demo.service;
 
-import net.learning.demo.mapper.AgeMultiMapper;
+import net.learning.demo.mapper.MultipleNameMapper;
 import net.learning.demo.mapper.DefaultAgeMapper;
 import net.learning.demo.model.DataHolder;
-import net.learning.demo.model.Response;
 import net.learning.demo.validators.AgeValidator;
 import net.learning.demo.validators.NameValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class DemoService {
     @Autowired
     private AgeValidator ageValidator;
     @Autowired
-    private AgeMultiMapper agemultiMapper;
+    private MultipleNameMapper multipleNameMapper;
     @Autowired
     private DefaultAgeMapper defaultAgeMapper;
 
@@ -28,8 +27,11 @@ public class DemoService {
 
         validate(nameValidator, dataHolder);
         validate(ageValidator, dataHolder);
-        map(agemultiMapper, dataHolder, "yash");
+
+        map(multipleNameMapper, dataHolder, "admin");
         map(defaultAgeMapper, dataHolder);
+      
+
         return dataHolder;
     }
 }
